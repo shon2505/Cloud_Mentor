@@ -10,33 +10,47 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Light theme tokens
-        light: {
-          bg: "#FAF9F5",
-          sidebar: "#F0EEE6",
-          surface: "#FFFFFF",
-          border: "#E5E2D8",
-          primary: "#1F1E1D",
-          muted: "#73726C",
-          hover: "#EAE7DD",
+        // Aurora Accent Palette
+        aurora: {
+          teal: "#17D6C5",
+          cyan: "#38BDF8",
+          blue: "#438AFF",
+          violet: "#8557F7",
+          magenta: "#E56BEF",
         },
-        // Dark theme tokens
+        // Dark theme surfaces & text
         dark: {
-          bg: "#262624",
-          sidebar: "#1F1E1D",
-          surface: "#30302E",
-          border: "#3E3E3A",
-          primary: "#F5F4EE",
-          muted: "#9E9C96",
-          hover: "#383835",
+          bg: "#080B18",
+          secondary: "#10162A",
+          elevated: "#171F35",
+          surface: "#10162A",
+          sidebar: "#0C1022",
+          border: "rgba(255, 255, 255, 0.08)",
+          primary: "#F4F7FF",
+          muted: "#A5B0C8",
+          hover: "#1A233D",
         },
-        // Claude-style Terracotta Accent
+        // Light theme surfaces & text
+        light: {
+          bg: "#F7F9FF",
+          secondary: "#FFFFFF",
+          elevated: "#EEF2FF",
+          surface: "#FFFFFF",
+          sidebar: "#F1F4FD",
+          border: "rgba(0, 0, 0, 0.08)",
+          primary: "#172033",
+          muted: "#657089",
+          hover: "#E8EDFC",
+        },
+        // Brand Accent
         accent: {
-          DEFAULT: "#C96442",
-          hover: "#B5573A",
-          light: "#FDF5F2",
-          dark: "#3B221B",
-          subtle: "#F4DDD4",
+          DEFAULT: "#438AFF",
+          hover: "#3376E6",
+          teal: "#17D6C5",
+          cyan: "#38BDF8",
+          violet: "#8557F7",
+          magenta: "#E56BEF",
+          terracotta: "#C96442",
         },
       },
       fontFamily: {
@@ -50,6 +64,30 @@ const config: Config = {
       boxShadow: {
         soft: "0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 1px 4px -1px rgba(0, 0, 0, 0.03)",
         card: "0 4px 20px -4px rgba(0, 0, 0, 0.05)",
+        glass: "0 8px 32px 0 rgba(0, 0, 0, 0.25)",
+        "aurora-glow": "0 0 40px -10px rgba(67, 138, 255, 0.35)",
+        "aurora-teal": "0 0 30px -5px rgba(23, 214, 197, 0.3)",
+      },
+      animation: {
+        "aurora-slow": "aurora-drift 24s ease-in-out infinite alternate",
+        "aurora-reverse": "aurora-drift-reverse 28s ease-in-out infinite alternate",
+        "pulse-subtle": "pulse-subtle 4s ease-in-out infinite",
+      },
+      keyframes: {
+        "aurora-drift": {
+          "0%": { transform: "translate(0%, 0%) scale(1) rotate(0deg)" },
+          "50%": { transform: "translate(6%, 8%) scale(1.08) rotate(4deg)" },
+          "100%": { transform: "translate(-5%, -4%) scale(0.96) rotate(-3deg)" },
+        },
+        "aurora-drift-reverse": {
+          "0%": { transform: "translate(0%, 0%) scale(1.05) rotate(0deg)" },
+          "50%": { transform: "translate(-8%, 5%) scale(0.95) rotate(-5deg)" },
+          "100%": { transform: "translate(4%, -7%) scale(1.07) rotate(3deg)" },
+        },
+        "pulse-subtle": {
+          "0%, 100%": { opacity: "0.6" },
+          "50%": { opacity: "0.9" },
+        },
       },
     },
   },

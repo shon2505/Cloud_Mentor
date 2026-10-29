@@ -9,7 +9,6 @@ export const ThemeToggle: React.FC = () => {
 
   useEffect(() => {
     setMounted(true);
-    // Determine initial theme preference
     const storedTheme = localStorage.getItem('cloudmentor_theme');
     if (storedTheme) {
       const darkActive = storedTheme === 'dark';
@@ -31,7 +30,7 @@ export const ThemeToggle: React.FC = () => {
 
   if (!mounted) {
     return (
-      <div className="w-8 h-8 rounded-lg border border-[#E5E2D8] dark:border-[#3E3E3A] opacity-50" />
+      <div className="w-8 h-8 rounded-lg border border-light-border dark:border-dark-border opacity-50" />
     );
   }
 
@@ -41,9 +40,13 @@ export const ThemeToggle: React.FC = () => {
       type="button"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="p-2 rounded-lg text-[#73726C] dark:text-[#9E9C96] hover:text-[#1F1E1D] dark:hover:text-[#F5F4EE] hover:bg-[#EAE7DD] dark:hover:bg-[#383835] transition-colors"
+      className="p-2 rounded-xl text-light-muted dark:text-dark-muted hover:text-aurora-cyan hover:bg-light-hover dark:hover:bg-dark-hover transition-colors"
     >
-      {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+      {isDark ? (
+        <Sun className="w-4 h-4 text-aurora-cyan animate-in spin-in-180 duration-200" />
+      ) : (
+        <Moon className="w-4 h-4 text-aurora-blue animate-in spin-in-180 duration-200" />
+      )}
     </button>
   );
 };

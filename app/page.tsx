@@ -1,5 +1,5 @@
-import { ChatWindow } from '@/components/ChatWindow';
+import { PlatformShell } from '@/components/PlatformShell';
 
 export default function HomePage() {
-  return <ChatWindow />;
+  return <PlatformShell initialModule="mentor" />;
 }

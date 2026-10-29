@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Source_Serif_4 } from 'next/font/google';
 import './globals.css';
+import { AuroraBackground } from '@/components/AuroraBackground';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -16,18 +17,18 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: 'CloudMentor — Cloud Computing Study Assistant',
+  title: 'CloudMentor — AI Cloud Learning, Discovery & Cost Optimizer',
   description:
-    'A specialized, domain-restricted AI study assistant for cloud computing students and engineers, covering AWS, Azure, GCP, Docker, Kubernetes, serverless, and cloud certifications.',
+    'Comprehensive AI-powered cloud computing platform: AI tutor, free course academy, multi-cloud cost optimizer, provider explorer, future tech intelligence, and personalized roadmaps.',
   icons: {
-    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23C96442"><path d="M12 2v4M12 18v4M2 12h4M18 12h4m-7.07-7.07 2.83 2.83m8.48 8.48 2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="%23C96442" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="%23C96442"/></svg>',
+    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2317D6C5"><path d="M12 2v4M12 18v4M2 12h4M18 12h4m-7.07-7.07 2.83 2.83m8.48 8.48 2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="%2338BDF8" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="%2317D6C5"/></svg>',
   },
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FAF9F5' },
-    { media: '(prefers-color-scheme: dark)', color: '#262624' },
+    { media: '(prefers-color-scheme: light)', color: '#F7F9FF' },
+    { media: '(prefers-color-scheme: dark)', color: '#080B18' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -40,8 +41,30 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sourceSerif.variable}`}>
-      <body className="font-sans antialiased bg-[#FAF9F5] dark:bg-[#262624] text-[#1F1E1D] dark:text-[#F5F4EE] selection:bg-[#C96442]/20 selection:text-[#C96442]">
-        {children}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const stored = localStorage.getItem('cloudmentor_theme');
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (stored === 'dark' || (!stored && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="font-sans antialiased bg-light-bg dark:bg-dark-bg text-light-primary dark:text-dark-primary selection:bg-aurora-cyan/20 selection:text-aurora-cyan min-h-screen relative overflow-x-hidden">
+        <AuroraBackground />
+        <div className="relative z-10 flex min-h-screen flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );

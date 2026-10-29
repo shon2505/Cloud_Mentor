@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
 import { useChats } from '@/hooks/useChats';
 import { Sidebar } from './Sidebar';
 import { EmptyState } from './EmptyState';
@@ -33,7 +33,7 @@ export const ChatWindow: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const messages = activeConversation?.messages || [];
+  const messages = useMemo(() => activeConversation?.messages || [], [activeConversation?.messages]);
 
   // Handle scroll events to detect if user has scrolled up
   const handleScroll = useCallback(() => {
